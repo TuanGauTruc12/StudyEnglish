@@ -1,0 +1,132 @@
+﻿@{ 
+    var thuocTinhs = ViewData["thuocTinhs"] as List<StudyEnglish.Models.ThuocTinh>;
+    var danhMucs = ViewData["danhMucs"] as List<StudyEnglish.Models.DanhMuc>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css/orb-ltr.min.css")
+    @Styles.Render("~/Content/css/id-cta.css")
+    @Styles.Render("~/Content/css/main.css")
+    @Styles.Render("~/Content/css/bbcle.css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    @Styles.Render("~/Content/css/main.css")
+</head>
+<body style="background: url(@Url.Content("/Content/img/bg_body_center.jpg")" )>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/"><img width="30" height="30" src="@Url.Content("/Content/img/logo.png")" alt="logo" /></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul style="text-decoration: none; margin: 0 auto;" class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+
+                                @foreach (var thuocTinh in thuocTinhs)
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @thuocTinh.tenThuocTinh
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            @foreach (var danhMuc in danhMucs)
+                                            {
+                                                if (danhMuc.ThuocTinh.maThuocTinh == thuocTinh.maThuocTinh)
+                                                {
+                                                    <li><a class="dropdown-item" href=@danhMuc.linkDanhMuc>@danhMuc.tenDanhMuc</a></li>
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/Thi/trac-nghiem" aria-current="page">Thi trắc nghiệm</a>
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+
+
+                        <button class="btn btn-outline-primary ms-4">
+                         <span><i class="fa-solid fa-user"></i></span>
+                            Đăng nhập
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+            @RenderBody()
+
+        <div style="clear: both;"></div>
+        <div id="orb-footer" class="orb-footer mt-4" dir="ltr">
+            <div id="navp-orb-footer-promo"></div>
+            <aside role="complementary">
+                <div id="orb-aside" class="orb-nav-sec b-r b-g-p">
+                    <div class="orb-footer-inner" role="navigation" aria-label="BBC">
+                        <h2 class="orb-footer-lead">Khám phá MBK</h2>
+                        <div class="orb-footer-primary-links">
+                            <ul>
+                                <li class="orb-nav-home"><a href="#">Nhà</a></li>
+                                <li class="orb-nav-news"><a href="#">Tin tức</a></li>
+                                <li class="orb-nav-sport"><a href="#" ">Thể thao</a></li>
+                                <li class=" orb-nav-weather"><a href="#" ">Thời tiết</a></li>
+                                <li class=" orb-nav-iplayer"><a href="#" ">iPlayer</a></li>
+                                <li class=" orb-nav-sounds"><a href="#" ">Âm thanh</a></li>
+                                <li class=" orb-nav-food"><a href="#" ">Món ăn</a></li>
+                                <li class=" orb-nav-earth"><a href="#" ">Trái đất</a></li>
+                                <li class=" orb-nav-arts"><a href="#" ">Nghệ thuật</a></li>
+                                <li class=" orb-nav-tv"><a href="#" ">TV</a></li>
+                                <li class=" orb-nav-radio"><a href="#" ">Radio</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <footer role=" contentinfo">
+                <div id="orb-contentinfo"
+                     class="orb-nav-sec b-r b-g-p">
+                    <div class="orb-footer-inner">
+                        <ul>
+                            <li class="orb-footer-terms"><a href="#" ">Điều khoản sử dụng</a></li>
+                            <li class=" orb-footer-about"><a href="about.html">Giới thiệu về MBK</a></li>
+                            <li class="orb-footer-privacy">
+                                <a href="#" ">Chính sách bảo mật</a>
+                            </li>
+                            <li class=" orb-footer-accessibility"><a href="#" ">Trợ giúp</a></li>
+                            <li class=" orb-footer-contact"><a href="#" ">Liên hệ</a></li>
+                        </ul>
+                        <small>
+                            <em class=" orb-hilight">Copyright &copy; 2018 MBK.</em> MBK không chịu trách nhiệm về nội dung
+                            của các trang bên ngoài.
+                            Đọc về cách tiếp cận của
+                            chúng tôi để liên kết
+                            bên ngoài.
+                        </small>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+@RenderSection("scripts", required: false)
+</html>
