@@ -20,6 +20,12 @@ namespace StudyEnglish
             );
 
             routes.MapRoute(
+                name: "Video",
+                url: "Video/{maVideo}",
+                defaults: new { controller = "Video", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
